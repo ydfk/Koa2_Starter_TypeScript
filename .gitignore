@@ -1,0 +1,8 @@
+node_modules
+/.idea/workspace.xml
+dist
+yarn*
+
+# dotenv environment variables file
+*.env
+.env

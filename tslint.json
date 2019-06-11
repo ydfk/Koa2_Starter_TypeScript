@@ -1,14 +1,27 @@
 {
   "defaultSeverity": "error",
   "extends": ["tslint:latest", "tslint-config-prettier"],
-  "jsRules": {},
+  "jsRules": {
+    "no-unused-expression": true
+  },
   "rules": {
+    "quotemark": [true, "double"],
+    "member-access": [false],
+    "ordered-imports": [false],
+    "max-line-length": [true, 150],
+    "member-ordering": [false],
+    "interface-name": [false],
+    "arrow-parens": false,
+    "object-literal-sort-keys": false,
+    "no-implicit-dependencies": [false, ["@"]],
+    "no-submodule-imports": [false, ["@"]],
     "no-console": [false],
-    "object-literal-sort-keys": [false],
-    "no-string-literal": false,
-    "triple-equals": [false],
-    "no-implicit-dependencies": [false, ["@", "core"]],
-    "no-submodule-imports": [false, ["@", "core"]]
+    "prefer-for-of": true,
+    "curly": true,
+    "no-var-keyword": true,
+    "max-classes-per-file": [true, 10],
+    "array-type":[true,"array"],
+    "class-name":true
   },
   "rulesDirectory": []
 }
