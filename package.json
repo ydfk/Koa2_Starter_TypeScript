@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "tsc && node dist/server.js",
-    "dev":"ts-node -T --files -r tsconfig-paths/register ./src/server.ts",
-    "dev:debug":"node --inspect -r ts-node/register -r tsconfig-paths/register ./src/server.ts",
+    "dev": "cross-env NODE_ENV=development ts-node -T --files -r tsconfig-paths/register ./src/server.ts",
+    "dev:debug": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true TS_NODE_FILES=true node --inspect -r ts-node/register -r tsconfig-paths/register ./src/server.ts",
     "serve": "nodemon",
     "serve:debug": "nodemon --config nodemon-debug.json",
     "debug": "yarn serve:debug",
@@ -15,15 +15,23 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
+    "@types/joi": "^14.3.3",
+    "dotenv": "^8.0.0",
+    "joi": "^14.3.1",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
-    "open": "^6.3.0"
+    "mongodb": "^3.2.7",
+    "open": "^6.3.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.18"
   },
   "devDependencies": {
+    "@types/dotenv": "^6.1.1",
     "@types/koa": "^2.0.48",
     "@types/koa-bodyparser": "^4.3.0",
     "@types/koa-router": "^7.0.40",
+    "cross-env": "^5.2.0",
     "lint-staged": "^8.2.0",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
