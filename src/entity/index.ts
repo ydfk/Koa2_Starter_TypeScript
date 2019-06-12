@@ -3,9 +3,7 @@
  * @Author: ydfk
  * @Date: 2019-06-11 18:14:17
  * @LastEditors: ydfk
- * @LastEditTime: 2019-06-11 18:14:51
+ * @LastEditTime: 2019-06-12 11:04:23
  */
 
-import { HomeEntity } from "./home.entity";
-
-export { HomeEntity };
+export * from "./home.entity";

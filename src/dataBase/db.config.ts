@@ -3,20 +3,25 @@
  * @Author: ydfk
  * @Date: 2019-06-11 17:46:30
  * @LastEditors: ydfk
- * @LastEditTime: 2019-06-11 17:57:35
+ * @LastEditTime: 2019-06-12 11:47:20
  */
-import config from "@/config/config";
+import configType from "@/config/config";
 import { ConnectionOptions } from "typeorm";
+import { Container } from "typedi";
+import path from "path";
+
+const config = Container.get(configType);
 
 export default () => {
+  const rootPath = path.resolve(__dirname, "..");
   const dbConfig: ConnectionOptions = {
     type: "mongodb",
     host: config.MONGO_HOST,
     useNewUrlParser: true,
     port: config.MONGO_PORT,
     database: config.MONGO_DATABASE,
-    entities: [__dirname + "/**/**.entity{.ts,.js}"],
-    subscribers: [__dirname + "/**/**.subscriber{.ts,.js}"],
+    entities: [rootPath + "/**/**.entity{.ts,.js}"],
+    subscribers: [rootPath + "/**/**.subscriber{.ts,.js}"],
     synchronize: config.isDevelopment,
     logging: config.isDevelopment,
     maxQueryExecutionTime: 1000,

@@ -3,25 +3,28 @@
  * @Author: ydfk
  * @Date: 2019-06-11 17:14:19
  * @LastEditors: ydfk
- * @LastEditTime: 2019-06-11 17:36:53
+ * @LastEditTime: 2019-06-12 12:20:05
  */
 
 import { parse } from "dotenv";
 import { readFileSync } from "fs";
 import * as Joi from "joi";
-import Singleton from "@/core/singleton";
 import { NODE_ENV, MONGO_HOST, MONGO_PORT, MONGO_USERNAME, MONGO_PASSWORD, MONGO_DATABASE, PORT } from "./config.constant";
+import { Service } from "typedi";
+import path from "path";
 
 interface EnvConfig {
   [key: string]: string;
 }
 
-class Config extends Singleton {
+@Service()
+export default class Config {
   private readonly envConfig: EnvConfig = {};
 
   constructor() {
-    super();
-    this.envConfig = this.validateInput(parse(readFileSync(`.${process.env.NODE_ENV || "development"}.env`)));    
+    const rootPath = path.resolve(__dirname, "../../");
+    console.log(`${rootPath}/.${process.env.NODE_ENV || "development"}.env`);
+    this.envConfig = this.validateInput(parse(readFileSync(`${rootPath}/.${process.env.NODE_ENV || "development"}.env`)));    
   }
 
   get port(): number {
@@ -97,5 +100,3 @@ class Config extends Singleton {
     return Boolean(this.get(key, false));
   }
 }
-
-export default Config.getInstance() as Config;

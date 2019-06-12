@@ -12,19 +12,25 @@
     "serve:debug": "nodemon --config nodemon-debug.json",
     "debug": "yarn serve:debug",
     "lint": "prettier --write \"src/**/*.ts\"",
-    "build": "tsc -p tsconfig.build.json"
+    "build": "rimraf dist && tsc -p tsconfig.json"
   },
   "dependencies": {
+    "@momothepug/tsmodule-alias": "^1.0.0",
     "@types/joi": "^14.3.3",
     "dotenv": "^8.0.0",
     "joi": "^14.3.1",
+    "kcors": "^2.2.2",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "mongodb": "^3.2.7",
     "open": "^6.3.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.18"
+    "rimraf": "^2.6.3",
+    "routing-controllers": "^0.7.7",
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.18",
+    "typeorm-typedi-extensions": "^0.2.3"
   },
   "devDependencies": {
     "@types/dotenv": "^6.1.1",

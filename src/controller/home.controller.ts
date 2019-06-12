@@ -1,21 +1,27 @@
+/*
+ * @Description: Copyright (c) ydfk. All rights reserved
+ * @Author: ydfk
+ * @Date: 2019-06-11 12:36:35
+ * @LastEditors: ydfk
+ * @LastEditTime: 2019-06-12 11:03:56
+ */
 import { Context } from "koa";
-import Singleton from "@/core/singleton";
-import { MongoRepository, getMongoRepository } from "typeorm";
-import { HomeEntity } from "@/entity";
+import {JsonController, Get, Ctx} from "routing-controllers";
+import {InjectRepository} from "typeorm-typedi-extensions";
+import { HomeRepository } from "@/repository";
 
-const homeRepository = getMongoRepository(HomeEntity)
+@JsonController()
+export class HomeController {
+  @InjectRepository()
+  private readonly homeRepository:HomeRepository
 
-class HomeController {
-  public async index(ctx: Context) {
-    await homeRepository.deleteMany({
-      name:"Hello koa"
-    });
-    await homeRepository.insertOne({
+  @Get()
+  public async index(@Ctx() ctx: Context) {
+    await this.homeRepository.deleteAll();
+    await this.homeRepository.add({
       name:"Hello koa"
     })
-    const homes = await homeRepository.find();
-    ctx.body = homes[0].name;
+    const homes = await this.homeRepository.findAll();
+    return homes[0].name;
   }
 }
-
-export default new HomeController();
